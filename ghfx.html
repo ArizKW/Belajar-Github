@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>root@system :: ~</title>
+<style>
+  :root{
+    --bg: #0a0f0a;
+    --bg-panel: #0e150e;
+    --fg: #c8ffd4;
+    --fg-dim: #5f8f6a;
+    --accent: #39ff88;
+    --amber: #ffb347;
+    --border: #1e2e20;
+    --mono: "JetBrains Mono", "Fira Code", "Courier New", monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--mono);
+    line-height: 1.6;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0px,
+      rgba(0,0,0,0) 2px,
+      rgba(0,0,0,0.12) 3px
+    );
+    z-index: 50;
+    mix-blend-mode: multiply;
+  }
+
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px dashed var(--fg-dim); }
+  a:hover { border-bottom-color: var(--accent); }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+
+  .term {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 0 0 1px rgba(57,255,136,0.03), 0 20px 60px rgba(0,0,0,0.5);
+    overflow: hidden;
+  }
+  .term-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: #0c130c;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--fg-dim);
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: #2a3d2c; }
+  .term-bar span.path { margin-left: 8px; }
+  .term-body { padding: 28px 28px 8px; }
+
+  .prompt { color: var(--fg-dim); }
+  .prompt::before { content: "guest@site:~$ "; color: var(--fg-dim); }
+
+  h1 {
+    font-size: clamp(28px, 5vw, 44px);
+    margin: 0 0 4px;
+    color: var(--fg);
+    letter-spacing: -0.01em;
+  }
+  .role {
+    color: var(--accent);
+    margin: 0 0 28px;
+    font-size: 15px;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 9px;
+    height: 1.1em;
+    background: var(--accent);
+    vertical-align: -2px;
+    animation: blink 1s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  section { margin: 40px 0; }
+  section h2 {
+    font-size: 13px;
+    color: var(--fg-dim);
+    margin: 0 0 14px;
+    font-weight: 400;
+  }
+  section h2::before { content: "# "; color: var(--accent); }
+
+  p { color: var(--fg); max-width: 66ch; }
+
+  .cmd-line {
+    color: var(--fg-dim);
+    font-size: 13px;
+    margin: 0 0 6px;
+  }
+  .cmd-line::before { content: "$ "; color: var(--fg-dim); }
+
+  ul.log { list-style: none; padding: 0; margin: 0; }
+  ul.log li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 92px 1fr;
+    gap: 16px;
+    font-size: 14px;
+  }
+  ul.log li:last-child { border-bottom: none; }
+  ul.log time { color: var(--fg-dim); font-size: 12px; }
+  ul.log .desc strong { color: var(--fg); font-weight: 500; }
+  ul.log .desc span { color: var(--fg-dim); display: block; font-size: 12.5px; margin-top: 2px; }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+  }
+  .skills-grid div {
+    border: 1px solid var(--border);
+    padding: 10px 12px;
+    font-size: 13px;
+    color: var(--fg-dim);
+  }
+  .skills-grid div::before { content: "[+] "; color: var(--accent); }
+
+  .contact-links { display: flex; gap: 20px; flex-wrap: wrap; font-size: 14px; }
+
+  footer {
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    color: var(--fg-dim);
+    font-size: 12px;
+  }
+
+  ::selection { background: var(--accent); color: #05130a; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="term">
+    <div class="term-bar">
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <span class="path">/home/guest — bash</span>
+    </div>
+    <div class="term-body">
+
+      <p class="prompt">whoami</p>
+      <h1>Nama Kamu<span class="cursor"></span></h1>
+      <p class="role">security researcher // ctf player // backend tinkerer</p>
+
+      <section>
+        <h2>tentang</h2>
+        <p class="cmd-line">cat about.txt</p>
+        <p>
+          Ganti teks ini dengan perkenalan singkat. Ceritakan apa yang kamu kerjakan,
+          minat di bidang keamanan siber, atau proyek yang sedang kamu bangun.
+        </p>
+      </section>
+
+      <section>
+        <h2>skills</h2>
+        <p class="cmd-line">ls skills/</p>
+        <div class="skills-grid">
+          <div>Python</div>
+          <div>Linux</div>
+          <div>Networking</div>
+          <div>Web Security</div>
+          <div>CTF</div>
+          <div>Bash Scripting</div>
+        </div>
+      </section>
+
+      <section>
+        <h2>log aktivitas</h2>
+        <p class="cmd-line">tail -f activity.log</p>
+        <ul class="log">
+          <li>
+            <time>2026-06</time>
+            <div class="desc">
+              <strong>Nama proyek / CTF</strong>
+              <span>Deskripsi singkat pencapaian atau proyeknya.</span>
+            </div>
+          </li>
+          <li>
+            <time>2026-02</time>
+            <div class="desc">
+              <strong>Proyek lainnya</strong>
+              <span>Deskripsi singkat.</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>kontak</h2>
+        <p class="cmd-line">cat contact.txt</p>
+        <div class="contact-links">
+          <a href="mailto:kamu@email.com">email</a>
+          <a href="https://github.com/username">github</a>
+          <a href="https://linkedin.com/in/username">linkedin</a>
+        </div>
+      </section>
+
+      <footer>
+        session ended — exit code 0
+      </footer>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>
